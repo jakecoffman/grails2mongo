@@ -25,9 +25,7 @@ grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
-        // specify dependency exclusions here; for example, uncomment this to disable ehcache:
-        // excludes 'ehcache'
-        excludes 'grails-datastore-simple'
+        excludes 'grails-plugin-testing', 'grails-plugin-rest', 'grails-plugin-filters', 'grails-plugin-url-mappings', 'grails-plugin-async', 'grails-plugin-gsp'
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
@@ -51,6 +49,13 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
+        compile ('org.grails:grails-plugin-rest:2.5.6') { excludes 'grails-datastore-simple' }
+        compile ('org.grails:grails-plugin-filters:2.5.6') { excludes 'grails-datastore-simple' }
+        compile ('org.grails:grails-plugin-url-mappings:2.5.6') { excludes 'grails-datastore-simple' }
+        compile ('org.grails:grails-plugin-async:2.5.6') { excludes 'grails-datastore-simple' }
+        compile ('org.grails:grails-plugin-gsp:2.5.6') { excludes 'grails-datastore-simple' }
+        test ('org.grails:grails-plugin-testing:2.5.6') { excludes 'grails-datastore-simple' }
+        test 'org.grails:grails-datastore-gorm-test:6.1.1.RELEASE'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
     }
 
