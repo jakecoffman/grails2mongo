@@ -14,6 +14,18 @@ class BookControllerSpec extends Specification {
         controller.index()
 
         then:
-        response.json == []
+        response.status == 200
+        response.contentAsString == '[{"class":"Book","id":"1","title":"test"}]'
+    }
+
+    def "test save"() {
+        when:
+        params.title = 'hi'
+        controller.save()
+
+        then:
+        response.status == 201
+        Book.count() == 1
+        Book.first().title == 'hi'
     }
 }
